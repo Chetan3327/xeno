@@ -1,0 +1,15 @@
+@host = http://localhost:5000
+
+### Test connection
+GET {{host}}/
+Content-Type: application/json
+
+### creating a customer
+POST {{host}}/api/customers/
+Content-Type: application/json
+
+{
+  "name": "Charlie Brown",
+  "email": "charlie.brown@example.com",
+  "visits": 2
+}

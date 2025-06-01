@@ -1,0 +1,14 @@
+@host = http://localhost:5000
+
+### Test connection
+GET {{host}}/
+Content-Type: application/json
+
+### creating an order
+POST {{host}}/api/orders
+Content-Type: application/json
+
+{
+  "customerId": "683bea2ad066c737f0549c93",
+  "amount": 45.00
+}
