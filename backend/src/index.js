@@ -5,6 +5,7 @@ import customerRoutes from "./routes/customer.route.js";
 import orderRoutes from "./routes/order.route.js";
 import userRoutes from "./routes/user.route.js"
 import audienceRoutes from "./routes/audience.route.js"
+import campaignRoutes from "./routes/campaign.route.js"
 import "./pubsub/consumer.js";
 import morgan from "morgan";
 import cors from "cors"
@@ -25,6 +26,7 @@ app.use("/api/customers", customerRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/user", userRoutes)
 app.use("/api/audience", audienceRoutes)
+app.use("/api/campaign", campaignRoutes)
 
 connectDB();
 
