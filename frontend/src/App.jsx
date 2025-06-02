@@ -6,6 +6,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Login from '../pages/login.jsx'
 import { UserProvider } from '@/providers/user-context.jsx'
 import Campaign from '@/pages/campaign.jsx'
+import PrivateRoute from '@/components/PrivateRoute.jsx'
 
 const App = () => {
   return (
@@ -14,10 +15,16 @@ const App = () => {
         <Router>
           <Navbar />
           <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path='/create-campaign' element={<CreateCampaign />} />
-            <Route path='/campaigns' element={<Campaigns />} />
-            <Route path='/campaigns/:campaignId' element={<Campaign />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/create-campaign" element={
+              <PrivateRoute><CreateCampaign /></PrivateRoute>
+            } />
+            <Route path="/campaigns" element={
+              <PrivateRoute><Campaigns /></PrivateRoute>
+            } />
+            <Route path="/campaigns/:campaignId" element={
+              <PrivateRoute><Campaign /></PrivateRoute>
+            } />
           </Routes>
         </Router>
       </ThemeProvider>

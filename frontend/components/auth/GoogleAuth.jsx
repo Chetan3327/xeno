@@ -12,7 +12,7 @@ const GoogleAuth = () => {
   const handleLoginSuccess = async (response) => {
     const { credential } = response;
     try {
-      const res = await fetch('http://localhost:3000/api/user/', {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
