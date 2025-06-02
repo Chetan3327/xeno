@@ -4,6 +4,6 @@ import verifyToken from "../middlewares/verify-token.js";
 
 const router = express.Router();
 
-router.get("/", verifyToken, createOrder);
+router.post("/", verifyToken, createOrder);
 
 export default router;

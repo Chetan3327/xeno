@@ -8,9 +8,10 @@ import { UserContext } from "@/providers/user-context"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { ModeToggle } from "./mode-toggle"
+import Logout from "./auth/logout"
 
 function Navbar() {
-  const {user} = useContext(UserContext);
+  const {user, logout} = useContext(UserContext);
   console.log("user", user)
   
   return (
@@ -57,14 +58,19 @@ function Navbar() {
       <div className="flex items-center gap-4">
         <ModeToggle />
 
-        <Button variant="outline" asChild>
-          <Link to="/login">Sign In</Link>
-        </Button>
-
-        <Avatar>
-          <AvatarImage src={user.picture} alt="User Avatar" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+        {user ? (
+          <div className="flex gap-4">
+            <Avatar>
+              <AvatarImage src={user?.picture} alt="User Avatar" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <Logout />
+          </div>
+        ) : (
+          <Button variant="outline" asChild>
+            <Link to="/login">Sign In</Link>
+          </Button>
+        )}
       </div>
     </header>
   )

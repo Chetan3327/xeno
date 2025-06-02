@@ -27,6 +27,7 @@ export const googleAuth = async (req, res) => {
     console.log(user)
 
     const token = sign({ userId: user._id, user }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    console.log(token)
     res.json({ token, user });
   } catch (error) {
     console.error('Error during Google authentication:', error);
