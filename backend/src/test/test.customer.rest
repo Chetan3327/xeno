@@ -9,7 +9,7 @@ POST {{host}}/api/customers/
 Content-Type: application/json
 
 {
-  "name": "Charlie Brown",
+  "name": "parth Brown",
   "email": "charlie.brown@example.com",
   "visits": 2
 }

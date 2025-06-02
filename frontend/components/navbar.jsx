@@ -1,23 +1,18 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import { UserContext } from "@/providers/user-context"
+import { useContext } from "react"
+import { Link } from "react-router-dom"
 import { ModeToggle } from "./mode-toggle"
 
 function Navbar() {
+  const {user} = useContext(UserContext);
+  console.log("user", user)
+  
   return (
     <header className="fixed w-full flex items-center justify-between px-4 py-2 border-b bg-white dark:bg-black">
       {/* Left: Logo */}
@@ -67,7 +62,7 @@ function Navbar() {
         </Button>
 
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="User Avatar" />
+          <AvatarImage src={user.picture} alt="User Avatar" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>

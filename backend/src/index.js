@@ -3,15 +3,18 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import customerRoutes from "./routes/customer.route.js";
 import orderRoutes from "./routes/order.route.js";
+import userRoutes from "./routes/user.route.js"
 import "./pubsub/consumer.js";
 import morgan from "morgan";
+import cors from "cors"
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cors());
 
 app.get("/", (_, res) => {
  res.send("Hello !");
@@ -19,6 +22,7 @@ app.get("/", (_, res) => {
 
 app.use("/api/customers", customerRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/user", userRoutes)
 
 connectDB();
 
