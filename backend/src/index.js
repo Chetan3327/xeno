@@ -4,6 +4,7 @@ import { connectDB } from "./config/db.js";
 import customerRoutes from "./routes/customer.route.js";
 import orderRoutes from "./routes/order.route.js";
 import userRoutes from "./routes/user.route.js"
+import audienceRoutes from "./routes/audience.route.js"
 import "./pubsub/consumer.js";
 import morgan from "morgan";
 import cors from "cors"
@@ -23,6 +24,7 @@ app.get("/", (_, res) => {
 app.use("/api/customers", customerRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/user", userRoutes)
+app.use("/api/audience", audienceRoutes)
 
 connectDB();
 

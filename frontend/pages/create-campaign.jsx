@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import {
@@ -11,7 +12,25 @@ import {
 } from "@/components/ui/table"
 import { Separator } from '@/components/ui/separator'
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 const CreateCampaign = () => {
+  const [query, setQuery] = useState('')
+  const [customers, setCustomers] = useState([])
+  const [loading, setLoading] = useState(false)
+
+  const fetchAudience = async () => {
+    setLoading(true)
+    try {
+      const res = await axios.post(`${BACKEND_URL}/api/audience/`, { query })
+      console.log(res.data)
+      setCustomers(res.data.customers || [])
+    } catch (err) {
+      console.error('Failed to fetch audience:', err)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="flex flex-col w-full min-h-screen p-8 space-y-8">
       {/* Audience Rule Builder */}
@@ -20,9 +39,13 @@ const CreateCampaign = () => {
         <Textarea
           placeholder="e.g. spend > 10000 AND visits < 3 OR inactive for 90 days"
           className="min-h-[120px]"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
         <div className="flex justify-end">
-          <Button>Fetch Audience</Button>
+          <Button onClick={fetchAudience} disabled={loading}>
+            {loading ? 'Fetching...' : 'Fetch Audience'}
+          </Button>
         </div>
       </div>
 
@@ -31,11 +54,12 @@ const CreateCampaign = () => {
       {/* Results Section */}
       <div className="max-w-5xl mx-auto w-full space-y-4">
         <div className="flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">Total: 100 people</p>
-          <Button>Create Campaign</Button>
+          <p className="text-sm text-muted-foreground">
+            Total: {customers.length} people
+          </p>
+          <Button disabled={!customers.length}>Create Campaign</Button>
         </div>
 
-        {/* Table */}
         <Table>
           <TableHeader>
             <TableRow>
@@ -47,21 +71,15 @@ const CreateCampaign = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {/* Replace this with dynamic data */}
-            <TableRow>
-              <TableCell>John Doe</TableCell>
-              <TableCell>john@example.com</TableCell>
-              <TableCell>12,000</TableCell>
-              <TableCell>2</TableCell>
-              <TableCell>2024-11-10</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Jane Smith</TableCell>
-              <TableCell>jane@example.com</TableCell>
-              <TableCell>15,000</TableCell>
-              <TableCell>1</TableCell>
-              <TableCell>2024-12-01</TableCell>
-            </TableRow>
+            {customers.map((c, i) => (
+              <TableRow key={i}>
+                <TableCell>{c.name}</TableCell>
+                <TableCell>{c.email}</TableCell>
+                <TableCell>{c.spent.toLocaleString()}</TableCell>
+                <TableCell>{c.visits}</TableCell>
+                <TableCell>{new Date(c.lastVisit).toLocaleDateString()}</TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </div>

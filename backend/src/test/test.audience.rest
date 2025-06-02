@@ -1,0 +1,13 @@
+@host = http://localhost:3000
+
+### Test connection
+GET {{host}}/
+Content-Type: application/json
+
+### get audience 
+POST {{host}}/api/audience/
+Content-Type: application/json
+
+{
+  "query": "spend > INR 200 AND visits < 2"
+}
