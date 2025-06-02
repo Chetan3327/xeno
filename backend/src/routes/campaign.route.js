@@ -1,9 +1,10 @@
 import express from "express";
-import {createCampaign, getCampaigns} from '../controllers/campaign.controller.js'
+import {createCampaign, getCampaigns, getCampaignById} from '../controllers/campaign.controller.js'
 
 const router = express.Router();
 
 router.get("/", getCampaigns);
+router.get("/:id", getCampaignById); 
 router.post("/", createCampaign);
 
 

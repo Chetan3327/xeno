@@ -17,3 +17,7 @@ Content-Type: application/json
   "customerId": "683bea2ad066c737f0549c93",
   "amount": 45.00
 }
+
+### creating an order
+GET {{host}}/api/campaign/683de72f0ac4521ef4a86024
+Content-Type: application/json

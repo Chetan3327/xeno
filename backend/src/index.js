@@ -9,6 +9,7 @@ import campaignRoutes from "./routes/campaign.route.js"
 import "./pubsub/consumer.js";
 import morgan from "morgan";
 import cors from "cors"
+import { updateDeliveryStatus } from "./controllers/deliveryReceipt.controller.js";
 dotenv.config();
 
 const app = express();
@@ -27,6 +28,7 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/user", userRoutes)
 app.use("/api/audience", audienceRoutes)
 app.use("/api/campaign", campaignRoutes)
+app.post("/api/delivery-receipt", updateDeliveryStatus)
 
 connectDB();
 

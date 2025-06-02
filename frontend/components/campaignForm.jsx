@@ -16,11 +16,12 @@ const CampaignForm = ({ customers }) => {
         name,
         message,
         audienceSize,
+        customers
       })
       setName('')
       setMessage('')
       navigate('/campaigns')
-
+      
     } catch (err) {
       console.error('Error creating campaign:', err)
       alert('Failed to create campaign')

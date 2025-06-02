@@ -8,9 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { useNavigate } from 'react-router-dom'
 
 const Campaigns = () => {
   const [campaigns, setCampaigns] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchCampaigns = async () => {
@@ -42,7 +44,7 @@ const Campaigns = () => {
           </TableHeader>
           <TableBody>
             {campaigns.map((campaign, i) => (
-              <TableRow key={i}>
+              <TableRow className="cursor-pointer" key={i} onClick={() => navigate(`/campaigns/${campaign._id}`)}>
                 <TableCell>{campaign.name}</TableCell>
                 <TableCell>{campaign.message}</TableCell>
                 <TableCell>{campaign.audienceSize}</TableCell>
