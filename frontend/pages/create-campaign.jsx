@@ -15,7 +15,7 @@ import { useState } from 'react'
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
 const CreateCampaign = () => {
-  const [query, setQuery] = useState("spend > INR 200 AND visits < 2")
+  const [query, setQuery] = useState("")
   const [customers, setCustomers] = useState([])
   const [loading, setLoading] = useState(false)
 

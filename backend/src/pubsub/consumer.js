@@ -1,8 +1,11 @@
 import { createClient } from "redis";
 import Customer from "../models/customer.model.js";
 import Order from "../models/order.model.js";
+import dotenv from 'dotenv'
+dotenv.config()
 
-const subscriber = createClient();
+const REDIS_URL = process.env.REDIS_URL
+const subscriber = createClient({ url: REDIS_URL });
 
 const CHANNEL_CUSTOMER = "customer_channel";
 const CHANNEL_ORDER = "order_channel";

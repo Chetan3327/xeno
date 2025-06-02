@@ -1,4 +1,4 @@
-@host = http://localhost:5000
+@host = http://localhost:3000
 
 ### Test connection
 GET {{host}}/
@@ -9,7 +9,7 @@ POST {{host}}/api/customers/
 Content-Type: application/json
 
 {
-  "name": "parth Brown",
-  "email": "charlie.brown@example.com",
-  "visits": 2
+  "name": "chetan",
+  "email": "chetan.brown@example.com",
+  "visits": 3
 }
