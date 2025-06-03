@@ -38,7 +38,7 @@ const CreateCampaign = () => {
       <div className="w-full max-w-5xl mx-auto space-y-4 mt-10">
         <h1 className="text-2xl font-semibold">Define Audience Segment</h1>
         <Textarea
-          placeholder="e.g. spend > 10000 AND visits < 3 OR inactive for 90 days"
+          placeholder="e.g. spend > 200 AND visits < 2"
           className="min-h-[120px]"
           value={query}
           onChange={(e) => setQuery(e.target.value)}

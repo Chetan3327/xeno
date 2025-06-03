@@ -7,8 +7,9 @@ import { Button } from "@/components/ui/button"
 import { UserContext } from "@/providers/user-context"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { ModeToggle } from "./mode-toggle"
 import Logout from "./auth/logout"
+import { ModeToggle } from "./mode-toggle"
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu"
 
 function Navbar() {
   const {user, logout} = useContext(UserContext);
@@ -18,41 +19,25 @@ function Navbar() {
     <header className="fixed w-full flex items-center justify-between px-4 py-2 border-b bg-white dark:bg-black">
       {/* Left: Logo */}
       <Link to="/" className="text-xl font-bold">
-        MyLogo
+        <img src="https://cdn.prod.website-files.com/620353a026ae70e21288308a/6536204e44d00a50cb63e6a4_Vector.svg" alt="logo" />
       </Link>
 
       {/* Center: Navigation Menu */}
-      {/* <NavigationMenu>
+      {user && (<NavigationMenu>
         <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Features</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="w-48 p-2 space-y-2">
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link to="/feature1" className="block px-2 py-1 hover:underline">
-                      Feature 1
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link to="/feature2" className="block px-2 py-1 hover:underline">
-                      Feature 2
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
 
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-              <Link to="/about">About</Link>
+              <Link to="/create-campaign">Create Campaign</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+              <Link to="/campaigns">Campaigns</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
-      </NavigationMenu> */}
+      </NavigationMenu>)}
 
       {/* Right: Sign In & Avatar */}
       <div className="flex items-center gap-4">

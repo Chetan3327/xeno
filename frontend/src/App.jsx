@@ -7,6 +7,7 @@ import Login from '../pages/login.jsx'
 import { UserProvider } from '@/providers/user-context.jsx'
 import Campaign from '@/pages/campaign.jsx'
 import PrivateRoute from '@/components/PrivateRoute.jsx'
+import Home from '@/pages/Home.jsx'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Router>
           <Navbar />
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/create-campaign" element={
               <PrivateRoute><CreateCampaign /></PrivateRoute>
